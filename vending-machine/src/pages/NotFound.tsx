@@ -1,0 +1,1 @@
+export const NotFound = () => <>Page does not exist!</>
