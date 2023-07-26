@@ -1,24 +1,20 @@
+import { FC } from "react";
 import { Button, Grid, Typography } from "@mui/material";
-
+import {IProduct} from "../CommonTypes";
 
 interface ProductProps {
-    title: string;
-    price: number;
+    product: IProduct;
+    index: number;
   }
 
   
-export const Product = ({ title, price }: ProductProps) => {
+export const Product: FC<ProductProps> = ({ product, index }) => {
     return (
-      <Grid container>
-        <Grid item mt={1} xs={12} sx={{ border: ".5px solid grey" }}>
-          <Typography sx={{ fontSize: 21, fontWeight: 800 }}>{title}</Typography>
-          <Typography>{price}€</Typography>
-        </Grid>
-        <Grid item mt={1} xs={12}>
-          <Button sx={{ width: "100%" }} variant="outlined">
-            Buy
-          </Button>
-        </Grid>
+      <Grid item key={index} spacing={2} xs={4} sx={{ border: ".5px solid grey" }}>
+        <Typography sx={{ fontSize: 21, fontWeight: 800 }}>{product.title}</Typography>
+        <Typography> Stock: {product.stock}</Typography>
+        <Typography>Price: {product.price}€</Typography>
+        <Button sx={{ width: "100%" }} variant="outlined">Buy</Button>
       </Grid>
     );
   };

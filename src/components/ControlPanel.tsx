@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Button, ButtonGroup, Grid, Typography } from "@mui/material";
 
 
@@ -8,7 +9,7 @@ interface UserProps {
   }
   
 
-export const ControlPanel = ({ name, surname, balance }: UserProps) => {
+export const ControlPanel: FC<UserProps> = ({ name, surname, balance }) => {
     return (
       <Grid container>
         <Grid item mt={1} xs={12}>

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
-import { VendingMachine } from "./components/VendingMachine";
+import { VendingMachine } from "./pages/VendingMachine";
 
 function App() {
   return (

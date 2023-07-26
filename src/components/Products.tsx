@@ -1,36 +1,18 @@
+import { FC } from "react";
 import { Grid } from "@mui/material";
 import { Product } from "./Product";
+import { IProduct } from "../CommonTypes";
 
-export const Products = () => {
+interface IProducts {
+  products: IProduct[] | null;
+}
+
+export const Products: FC<IProducts> = ({ products }) => {
   return (
-    <Grid container spacing={5}>
-      <Grid item xs={4}>
-        <Product title="Redbull" price={5} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Fanta" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Coke" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Coke" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Coke" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Water" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Water" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Water" price={3} />
-      </Grid>
-      <Grid item xs={4}>
-        <Product title="Water" price={3} />
-      </Grid>
+    <Grid container spacing={2} mt={1} mr={1} ml={1} xs={4}>
+      {products?.map((product, index) => (
+        <Product product={product} index={index} />
+      ))}
     </Grid>
   );
 };
