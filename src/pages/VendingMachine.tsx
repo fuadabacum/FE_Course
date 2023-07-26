@@ -7,20 +7,39 @@ import { api } from "../api";
 export const VendingMachine = () => {
   const [isLoading, setLoading] = useState(false);
   const [products, setProducts] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      
-        setLoading(true);
-        const response = await api.getProductsMock();
-        setProducts(response.data);
+      setLoading(true);
+      try {
+        const response = await api.getProducts();
+        const productsResponse = response.data.map(
+          (item: {
+            product: { name: string; price: string };
+            quantity: number;
+          }) => ({
+            title: item.product ? item.product.name : "Not available",
+            stock: item.quantity ? item.quantity : "-",
+            price: item.product?.price,
+          })
+        );
+        setProducts(productsResponse);
+      } catch (error) {
+        setError(error);
+      } finally {
         setLoading(false);
+      }
     };
     fetchProducts();
   }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
 
   return (
